@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colección de Perfumes Versace</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #000 0%, #222 100%);
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo {
+            max-width: 180px;
+            margin: 1rem auto;
+            transition: transform 0.5s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero {
+            background: url('/api/placeholder/1200/600') center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid gold;
+            max-width: 80%;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .hero-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #d4af37 0%, #f0ce7c 50%, #d4af37 100%);
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+        }
+        
+        .perfumes-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #000;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #d4af37, #f0ce7c);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .perfumes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .perfume-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+        }
+        
+        .perfume-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .perfume-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .perfume-card:hover .perfume-image {
+            transform: scale(1.05);
+        }
+        
+        .perfume-info {
+            padding: 1.5rem;
+        }
+        
+        .perfume-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .perfume-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .perfume-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #000;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        .buy-button {
+            background: black;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .buy-button:hover {
+            background: #222;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #d4af37;
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+            z-index: 1;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .testimonials {
+            background-color: #1a1a1a;
+            padding: 4rem 2rem;
+            color: white;
+        }
+        
+        .testimonials .section-title {
+            color: white;
+        }
+        
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .testimonial {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .testimonial-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            max-width: 150px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: #d4af37;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: #d4af37;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content {
+                max-width: 90%;
+            }
+            
+            .perfumes-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        /* Animaciones y transiciones adicionales */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.pinimg.com/474x/01/ce/e0/01cee074e499755da71c3b16db9fa76b.jpg" alt="Versace Logo" class="logo">
+        <h1>VERSACE PERFUMES</h1>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content animate-fade-in">
+            <h2>Elegancia Italiana</h2>
+            <p>Descubre la exquisita colección de fragancias que capturan la esencia del lujo y la sofisticación.</p>
+            <button class="cta-button">Explorar Colección</button>
+        </div>
+    </section>
+    
+    <section class="perfumes-section">
+        <h2 class="section-title">Nuestras Fragancias Exclusivas</h2>
+        
+        <div class="perfumes-grid">
+            <!-- Perfume 1 -->
+            <div class="perfume-card animate-fade-in delay-1">
+                <span class="badge">Bestseller</span>
+                <img src="https://i.pinimg.com/474x/68/53/14/685314b2e64ff832c0574a9bf22ddca6.jpg" alt= class="perfume-image">
+                <div class="perfume-info">
+                    <h3 class="perfume-name">Bright Crystal</h3>
+                    <p class="perfume-description">Una fragancia floral afrutada con notas de granadas, peonías y magnolias. Perfecta para la mujer moderna y radiante.</p>
+                    <span class="perfume-price">$450 </span>
+                    <button class="buy-button">Comprar Ahora</button>
+                </div>
+            </div>
+            
+            <!-- Perfume 2 -->
+            <div class="perfume-card animate-fade-in delay-2">
+                <img src="Eros EDP 100 ml.jpeg" alt="Eros" class="perfume-image">
+                <div class="perfume-info">
+                    <h3 class="perfume-name">Eros</h3>
+                    <p class="perfume-description">Una poderosa y seductora fragancia masculina con notas de menta, manzana verde y vainilla. El poder del amor en un frasco.</p>
+                    <span class="perfume-price">$500</span>
+                    <button class="buy-button">Comprar Ahora</button>
+                </div>
+            </div>
+            
+            <!-- Perfume 3 -->
+            <div class="perfume-card animate-fade-in delay-3">
+                <span class="badge">Nuevo</span>
+                <img src="Dylan Blue Pour Homme EDT 100 ml.jpeg" alt="Dylan Blue" class="perfume-image">
+                <div class="perfume-info">
+                    <h3 class="perfume-name">Dylan Blue</h3>
+                    <p class="perfume-description">Una fragancia aromática fougère con notas mediterráneas. La elegancia masculina en su forma más pura.</p>
+                    <span class="perfume-price">$780.00</span>
+                    <button class="buy-button">Comprar Ahora</button>
+                </div>
+            </div>
+            
+            <!-- Perfume 4 -->
+            <div class="perfume-card animate-fade-in">
+                <img src="Versace Versense.jpeg" alt="Versense" class="perfume-image">
+                <div class="perfume-info">
+                    <h3 class="perfume-name">Versense</h3>
+                    <p class="perfume-description">Una fragancia fresca y luminosa con notas cítricas y florales. La esencia mediterránea en cada gota.</p>
+                    <span class="perfume-price">$690.00</span>
+                    <button class="buy-button">Comprar Ahora</button>
+                </div>
+            </div>
+            
+            <!-- Perfume 5 -->
+            <div class="perfume-card animate-fade-in delay-1">
+                <img src="versace yellow.jpg" alt="Yellow Diamond" class="perfume-image">
+                <div class="perfume-info">
+                    <h3 class="perfume-name">Yellow Diamond</h3>
+                    <p class="perfume-description">Una joya entre las fragancias con notas de pera, neroli y flores exóticas. Pura sofisticación femenina.</p>
+                    <span class="perfume-price">$880.00</span>
+                    <button class="buy-button">Comprar Ahora</button>
+                </div>
+            </div>
+            
+            <!-- Perfume 6 -->
+            <div class="perfume-card animate-fade-in delay-2">
+                <span class="badge">Exclusivo</span>
+                <img src="peorrmo.jpg" alt="Pour Homme" class="perfume-image">
+                <div class="perfume-info">
+                    <h3 class="perfume-name">Pour Homme</h3>
+                    <p class="perfume-description">El clásico atemporal con notas amaderadas y aromáticas. La firma olfativa del hombre elegante.</p>
+                    <span class="perfume-price">$950.00</span>
+                    <button class="buy-button">Comprar Ahora</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+        
+        <div class="testimonials-slider">
+            <div class="testimonial">
+                <p class="testimonial-text">"Bright Crystal es mi firma personal desde hace años. Recibo cumplidos constantemente y nunca me cansaré de su aroma elegante y fresco."</p>
+                <p class="testimonial-author">- María García</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <img src="https://i.pinimg.com/474x/01/ce/e0/01cee074e499755da71c3b16db9fa76b.jpg" alt="Versace Logo" class="footer-logo">
+        
+        <div class="footer-links">
+            <a href="#" class="footer-link">Sobre Nosotros</a>
+            <a href="#" class="footer-link">Fragancias</a>
+            <a href="#" class="footer-link">Tiendas</a>
+            <a href="#" class="footer-link">Contacto</a>
+            <a href="#" class="footer-link">Política de Privacidad</a>
+        </div>
+        
+        <div class="social-icons">
+            <a href="#" class="social-icon">FB</a>
+            <a href="#" class="social-icon">IG</a>
+            <a href="#" class="social-icon">TW</a>
+            <a href="#" class="social-icon">YT</a>
+        </div>
+        
+        <p class="copyright">© 2025 Versace Fragrances. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
